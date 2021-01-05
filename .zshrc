@@ -29,13 +29,13 @@ zinit light-mode for \
 # zdharma/fast-syntax/highlighting
 # zsh-autosuggestions
 # zsh-completions
-zinit wait lucid light-mode for \
-    atinit"zicompinit; zicdreplay" \
+zinit wait lucid for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions
+    blockf \
+        zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions
 
 # zdharma/history-search-multi-word
 zstyle ":history-search-multi-word" page-size "11"
@@ -52,14 +52,19 @@ zinit light starship/starship
 # junegunn/fzf-bin
 # neovim/neovim
 zinit wait"1" lucid from"gh-r" as"null" for \
-    sbin"**/fd"           @sharkdp/fd \
-    sbin"**/bat"          @sharkdp/bat \
-    sbin"**/lsd"          Peltoche/lsd \
-    sbin"fzf"             junegunn/fzf-bin \
-    sbin"**/bin/nvim"     neovim/neovim
+  sbin"**/fd"           @sharkdp/fd \
+  sbin"**/bat"          @sharkdp/bat \
+  sbin"**/lsd"          Peltoche/lsd \
+  sbin"fzf"             junegunn/fzf-bin \
+  sbin"**/bin/nvim"     neovim/neovim
 
 ### }}}
 
 eval "$(starship init zsh)"
 
+local asdf_dir="${HOME}/.asdf"
+if [ -d ${asdf_dir} ]; then
+  . ${asdf_dir}/asdf.sh
+  fpath=(${ASDF_DIR}/completions $fpath)
+fi
 
