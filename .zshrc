@@ -62,9 +62,9 @@ zinit wait"1" lucid from"gh-r" as"null" for \
 
 eval "$(starship init zsh)"
 
-local asdf_dir="${HOME}/.asdf"
+asdf_dir="${HOME}/.asdf"
 if [ -d ${asdf_dir} ]; then
   . ${asdf_dir}/asdf.sh
-  fpath=(${ASDF_DIR}/completions $fpath)
+  fpath=(${asdf_dir}/completions $fpath)
 fi
 
