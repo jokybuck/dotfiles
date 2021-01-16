@@ -46,25 +46,39 @@ zinit load zdharma/history-search-multi-word
 zinit ice from"gh-r" sbin"starship"
 zinit light starship/starship
 
-# sharkdp/fd
+# sharkdp/fd
+zinit wait"1" lucid from"gh-r" as"null" \
+  sbin"**/fd" for @sharkdp/fd
+
 # sharkdp/bat
+zinit wait"1" lucid from"gh-r" as"null" \
+  atload"alias cat=bat" \
+  sbin"**/bat" for @sharkdp/bat
+
 # Peltoche/lsd
+zinit wait"1" lucid from"gh-r" as"null" \
+  atload"alias ls=lsd" \
+  sbin"**/lsd" for @Peltoche/lsd \
+
+# BurntSushi/ripgrep
+zinit wait"1" lucid from"gh-r" as"null" \
+  sbin"**/rg" for @BurntSushi/ripgrep \
+
 # junegunn/fzf-bin
+zinit wait"1" lucid from"gh-r" as"null" \
+  sbin"fzf" for @junegunn/fzf-bin
+
 # neovim/neovim
-zinit wait"1" lucid from"gh-r" as"null" for \
-  sbin"**/fd"           @sharkdp/fd \
-  sbin"**/bat"          @sharkdp/bat \
-  sbin"**/lsd"          Peltoche/lsd \
-  sbin"fzf"             junegunn/fzf-bin \
-  sbin"**/bin/nvim"     neovim/neovim
+zinit wait"1" lucid from"gh-r" ver"latest" as"null" \
+  atload"alias vi=nvim" \
+  sbin"**/bin/nvim" for @neovim/neovim
+
+zinit snippet "${HOME}/.zsh/rc/aliases.zsh"
+zinit snippet "${HOME}/.zsh/rc/options.zsh"
 
 ### }}}
 
 eval "$(starship init zsh)"
-
-asdf_dir="${HOME}/.asdf"
-if [ -d ${asdf_dir} ]; then
-  . ${asdf_dir}/asdf.sh
-  fpath=(${asdf_dir}/completions $fpath)
-fi
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 

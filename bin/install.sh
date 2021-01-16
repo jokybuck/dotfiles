@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 dot_dir="${HOME}/dotfiles"
 
 function has() {
@@ -7,25 +9,38 @@ function has() {
 }
 
 ### check command
-if ! has "git"; then
+if ! has "git" || ! has "curl"; then
   echo "git required"
   exit 1
 fi
 
-### asdf setup {{{
-echo -e "### Installing asdf..."
-asdf_dir="${HOME}/.asdf"
-if [ ! -d ${asdf_dir} ]; then
-  git clone https://github.com/asdf-vm/asdf.git ${asdf_dir}
-  cd ${asdf_dir}
-  git checkout "$(git describe --abbrev=0 --tags)"
+### Install pyenv & pyenv-virtualenv
+if ! has "pyenv"; then
+  echo -e "### Installing pyevn & pyenv-virtualenv"
+  curl https://pyenv.run | bash
+  export PATH="${HOME}/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
-. ${asdf_dir}/asdf.sh
 
-echo -e "### Installing python..."
-asdf plugin add python
-asdf install python latest
-asdf reshim python
+PYTHON3_VERSION="3.9.1"
+if pyenv versions | grep -x "  ${PYTHON3_VERSION}" >/dev/null; then
+  echo -e "### Skip python installation"
+else
+  echo -e "### Installing python"
+  pyenv install ${PYTHON3_VERSION}
+fi
+
+VERTUALENV_NAME="neovim3"
+echo -e "### Making virtualenv"
+if pyenv virtualenvs | grep -x "  ${VERTUALENV_NAME}" >/dev/null; then
+  pyenv uninstall ${VERTUALENV_NAME}
+fi
+pyenv virtualenv ${PYTHON3_VERSION} ${VERTUALENV_NAME}
+pyenv activate ${VERTUALENV_NAME}
+python --version
+python -m pip install pynvim
+pyenv deactivate ${VERTUALENV_NAME}
 
 # create symbolic link
 cd ${dot_dir}
