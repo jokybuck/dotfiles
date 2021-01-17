@@ -43,15 +43,16 @@ python -m pip install pynvim
 pyenv deactivate ${VERTUALENV_NAME}
 
 # create symbolic link
-cd ${dot_dir}
+cd "${dot_dir}"
 for f in .??*;
 do
   [[ "$f" == ".git" ]] && continue
+  [[ "$f" == ".github" ]] && continue
   [[ "$f" == ".gitignore" ]] && continue
   [[ "$f" == "README.md" ]] && continue
   [[ "$f" == "install.sh" ]] && continue
 
-  ln -snf ${dot_dir}/"$f" ${HOME}/"$f"
+  ln -snf "${dot_dir}"/"$f" "${HOME}"/"$f"
   echo -e "### Installed $f"
 done
 
