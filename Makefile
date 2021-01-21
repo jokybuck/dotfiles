@@ -24,7 +24,7 @@ install: ## Install dependencies and setup dot files
 	@echo ''
 	@bash $(DOTFILES_DIR)/etc/install
 	$(MAKE) deploy
-	@exec $(which zsh) -l
+	$(which zsh)
 	@zinit update
 
 .PHONY: update
