@@ -20,12 +20,11 @@ deploy: ## Create symlink to home directory
 
 .PHONY: install
 install: ## Install dependencies and setup dot files
+	$(MAKE) update
 	@echo '==> Start to install dependencies'
 	@echo ''
 	@bash $(DOTFILES_DIR)/etc/install
 	$(MAKE) deploy
-	$(which zsh)
-	@zinit update
 
 .PHONY: update
 update: ## Fetch changes for this repo
