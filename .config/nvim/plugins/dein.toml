@@ -1,0 +1,50 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+  colorscheme iceberg
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+  \ 'colorscheme': 'iceberg',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'readonly', 'filename' ] ],
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'FugitiveHead',
+  \   'filename': 'LightlineFilename',
+  \ },
+  \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+  \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+  \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev ='next'
+build = 'bash install.sh'
+hook_add = '''
+source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
+'''
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
