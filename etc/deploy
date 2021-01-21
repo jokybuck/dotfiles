@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+dot_dir="${HOME}/dotfiles"
+
+## Create symlink
+echo "### Create symlink"
+
+# zsh
+echo "### zsh"
+for f in .zsh*;
+do
+  ln -snf "${dot_dir}"/"$f" "${HOME}"/"$f"
+  echo -e "### symlink $f"
+done
+

@@ -73,7 +73,6 @@ zinit wait"1" lucid from"gh-r" ver"latest" as"null" \
   atload"alias vi=nvim" \
   sbin"**/bin/nvim" for @neovim/neovim
 
-zinit snippet "${HOME}/.zsh/rc/aliases.zsh"
 zinit snippet "${HOME}/.zsh/rc/options.zsh"
 
 ### }}}
