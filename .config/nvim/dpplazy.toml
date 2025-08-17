@@ -1,0 +1,4 @@
+[[plugins]]
+repo = 'miyakogi/seiya.vim'
+on_cmd = ["SeiyaEnable", "SeiyaDisable"]
+

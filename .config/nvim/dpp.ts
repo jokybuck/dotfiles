@@ -82,7 +82,6 @@ export class Config extends BaseConfig {
       );
 
       const tomls = await Promise.all(tomlPromises);
-      console.log("-------" + tomls)
 
       // Merge toml results
       for (const toml of tomls) {
