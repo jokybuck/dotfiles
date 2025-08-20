@@ -10,32 +10,45 @@ vim.o.showmatch = true
 --
 -- vim.o.clipboard = "unnamedplus"
 
-local dppSrc = "~/.cache/dpp/repos/github.com/Shougo/dpp.vim"
-local denopsSrc = "~/.cache/dpp/repos/github.com/vim-denops/denops.vim"
-local dppConfig = "~/.config/nvim/dpp.ts"
+-- cache ディレクトリの準備
+local cache = vim.fn.expand("~/.cache")
+if vim.fn.isdirectory(cache) == 0 then
+  vim.fn.mkdir(cache, "p")
+end
 
-local extGit = "~/.cache/dpp/repos/github.com/Shougo/dpp-protocol-git"
-local extInstaller = "~/.cache/dpp/repos/github.com/Shougo/dpp-ext-installer"
-local extLazy = "~/.cache/dpp/repos/github.com/Shougo/dpp-ext-lazy"
-local extLocal = "~/.cache/dpp/repos/github.com/Shougo/dpp-ext-local"
-local extToml = "~/.cache/dpp/repos/github.com/Shougo/dpp-ext-toml"
+local function dpp_init_plugin(plugin)
+  -- Search from $CACHE directory
+  local dir = vim.fn.expand(cache .. "/dpp/repos/github.com/" .. plugin)
+  if vim.fn.isdirectory(dir) == 0 then
+    -- Install plugin automatically
+    local cmd = string.format("!git clone https://github.com/%s %s", plugin, dir)
+    vim.cmd(cmd)
+  end
 
-vim.opt.runtimepath:prepend(dppSrc) 
+  -- Add plugin to runtimepath
+  vim.opt.runtimepath:prepend(dir)
+end
+
+local dppConfig = vim.fn.expand("~/.config/nvim/dpp.ts")
+
+vim.env.BASE_DIR = vim.fn.expand('<script>:h')
+
+dpp_init_plugin("Shougo/dpp.vim")
 local dpp = require("dpp")
 
 -- denops shared serverの設定
 -- vim.g.denops_server_addr = "127.0.0.1:34141"
 
-vim.g["dpp#_log_level"] = "debug"
+-- vim.g["dpp#_log_level"] = "debug"
 
-local dppBase = "~/.cache/dpp/"
+local dppBase = vim.fn.expand("~/.cache/dpp/")
 if dpp.load_state(dppBase) then
-  vim.opt.runtimepath:prepend(denopsSrc)
-  vim.opt.runtimepath:prepend(extGit)
-  vim.opt.runtimepath:prepend(extInstaller)
-  vim.opt.runtimepath:prepend(extLazy)
-  vim.opt.runtimepath:prepend(extLocal)
-  vim.opt.runtimepath:prepend(extToml)
+  dpp_init_plugin("vim-denops/denops.vim")
+  dpp_init_plugin("Shougo/dpp-ext-installer")
+  dpp_init_plugin("Shougo/dpp-ext-lazy")
+  dpp_init_plugin("Shougo/dpp-ext-local")
+  dpp_init_plugin("Shougo/dpp-ext-toml")
+  dpp_init_plugin("Shougo/dpp-protocol-git")
 
   vim.api.nvim_create_autocmd("User", {
     pattern = "DenopsReady",
@@ -52,3 +65,4 @@ vim.api.nvim_create_autocmd("User", {
     vim.notify("dpp make_state() is done")
   end
 })
+

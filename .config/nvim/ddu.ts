@@ -5,20 +5,13 @@ import {
 
 export class Config extends BaseConfig {
   override config(args: ConfigArguments): Promise<void> {
-    args.contextBuilder.patchGlobal({
+    args.contextBuilder.patchLocal("file_recursive", {
       ui: "ff",
-      sourceOptions: {
-        _: {
-          ignoreCase: true,
-          matchers: ["matcher_substring"],
-          smartCase: true,
-        },
-      },
-      kindOptions: {
-        file: {
-          defaultAction: "open",
-        },
-      },
+      sources: [
+        {
+          name: "file_rec",
+	}
+      ],
     });
 
     return Promise.resolve();

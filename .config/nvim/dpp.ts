@@ -41,7 +41,6 @@ export class Config extends BaseConfig {
     args.contextBuilder.setGlobal({
       protocols: ["git"],
     });
-    const dotfilesDir = "~/.config/nvim/";
 
     const [context, options] = await args.contextBuilder.get(args.denops);
 
@@ -62,8 +61,8 @@ export class Config extends BaseConfig {
       const action = tomlExt.actions.load;
 
       const tomlPromises = [
-        { path: dotfilesDir + "dpp.toml", lazy: false },
-        { path: dotfilesDir + "ddu.toml", lazy: true },
+        { path: "$BASE_DIR/dpp.toml", lazy: false },
+        { path: "$BASE_DIR/ddu.toml", lazy: false },
       ].map(async (tomlFile) =>
         action.callback({
           denops: args.denops,
