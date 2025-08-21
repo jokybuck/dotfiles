@@ -29,9 +29,8 @@ local function dpp_init_plugin(plugin)
   vim.opt.runtimepath:prepend(dir)
 end
 
-local dppConfig = vim.fn.expand("~/.config/nvim/dpp.ts")
-
 vim.env.BASE_DIR = vim.fn.expand('<script>:h')
+local dppConfig = vim.fn.expand("$BASE_DIR/dpp.ts")
 
 dpp_init_plugin("Shougo/dpp.vim")
 local dpp = require("dpp")
@@ -65,4 +64,16 @@ vim.api.nvim_create_autocmd("User", {
     vim.notify("dpp make_state() is done")
   end
 })
+
+-- install
+vim.api.nvim_create_user_command('DppInstall', "call dpp#async_ext_action('installer', 'install')", {})
+-- update
+vim.api.nvim_create_user_command(
+    'DppUpdate', 
+    function(opts)
+        local args = opts.fargs
+        vim.fn['dpp#async_ext_action']('installer', 'update', { names = args })
+    end, 
+    { nargs = '*' }
+)
 

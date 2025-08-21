@@ -5,13 +5,88 @@ import {
 
 export class Config extends BaseConfig {
   override config(args: ConfigArguments): Promise<void> {
-    args.contextBuilder.patchLocal("file_recursive", {
+    args.contextBuilder.patchGlobal({
       ui: "ff",
+      uiParams: {
+        ff: {
+          filterFloatingPosition: "bottom",
+          filterSplitDirection: "floating",
+          floatingBorder: "rounded",
+          previewFloating: true,
+          previewFloatingBorder: "rounded",
+          previewFloatingTitle: "Preview",
+          previewSplit: "horizontal",
+          prompt: "> ",
+          split: "floating",
+          startFilter: true,
+        },
+        filer: {
+          winWidth: 40,
+          split: "vertical",
+          splitDirection: "topleft",
+        },
+      },
+      sourceOptions: {
+        _: {
+          matchers: [
+            "matcher_substring",
+          ],
+          ignoreCase: true,
+        },
+      },
+    });
+    args.contextBuilder.patchLocal("file_recursive", {
       sources: [
         {
-          name: "file_rec",
-	}
+          name: [ "file_rec" ],
+          options: {
+            converters: [
+              "converter_devicon",
+            ],
+          },
+          params: {
+            ignoredDirectories: [
+              ".git",
+            ],
+          },
+        },
       ],
+      kindOptions: {
+        file: {
+          defaultAction: "open",
+        },
+      },
+    });
+    args.contextBuilder.patchLocal("filer", {
+      ui: "filer",
+      sources: [
+        {
+          name: [ "file" ],
+          param: {},
+        },
+      ],
+      sourceOptions: {
+        _: {
+	  columns: [ "filename" ],
+	},
+      },
+      kindOptions: {
+        file: {
+          defaultAction: "open",
+        },
+      },
+    });
+    args.contextBuilder.patchLocal("colorscheme", {
+      sources: [
+        {
+          name: [ "colorscheme" ],
+        },
+      ],
+      kindOptions: {
+        colorscheme: {
+          defaultAction: "set",
+        },
+      },
     });
 
     return Promise.resolve();

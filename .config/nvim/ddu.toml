@@ -2,7 +2,11 @@
 repo = 'Shougo/ddu.vim'
 depends = 'denops.vim'
 hooks_file = '$BASE_DIR/ddu.lua'
-on_command = 'Ddu'
+
+[[plugins]]
+repo = "Shougo/ddu-commands.vim"
+depends = 'ddu.vim'
+on_cmd = 'Ddu'
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
@@ -30,5 +34,9 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = "Shougo/ddu-column-filename"
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = "uga-rosa/ddu-filter-converter_devicon"
 on_source = 'ddu.vim'
 
