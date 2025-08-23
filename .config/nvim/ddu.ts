@@ -21,18 +21,23 @@ export class Config extends BaseConfig {
           startFilter: true,
         },
         filer: {
-          winWidth: 40,
-          split: "vertical",
-          splitDirection: "topleft",
+          split: "floating",
+          floatingBorder: "rounded",
+	  floatingTitle: "Filer",
         },
       },
       sourceOptions: {
         _: {
+          ignoreCase: true,
           matchers: [
             "matcher_substring",
           ],
-          ignoreCase: true,
         },
+      },
+      kindOptions: {
+        file: {
+	  defaultAction: "open",
+	},
       },
     });
     args.contextBuilder.patchLocal("file_recursive", {

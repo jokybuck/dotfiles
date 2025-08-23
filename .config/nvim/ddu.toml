@@ -1,11 +1,11 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
 depends = ['denops.vim']
-hooks_file = '$BASE_DIR/ddu.lua'
 on_func = ['ddu#start']
+hooks_file = '$BASE_DIR/ddu.lua'
 
 [[plugins]]
-repo = "Shougo/ddu-commands.vim"
+repo = 'Shougo/ddu-commands.vim'
 depends = 'ddu.vim'
 on_cmd = ['Ddu']
 
@@ -20,11 +20,27 @@ hooks_file = '$BASE_DIR/ddu-ui-filer.lua'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = "Shougo/ddu-source-file"
+repo = 'Shougo/ddu-source-action'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = "Shougo/ddu-source-file_rec"
+repo = 'Shougo/ddu-source-buffer'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-register'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-path_history'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -32,14 +48,14 @@ repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = "Shougo/ddu-kind-file"
+repo = 'Shougo/ddu-kind-file'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = "Shougo/ddu-column-filename"
+repo = 'Shougo/ddu-column-filename'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = "uga-rosa/ddu-filter-converter_devicon"
+repo = 'uga-rosa/ddu-filter-converter_devicon'
 on_source = 'ddu.vim'
 
