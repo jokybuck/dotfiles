@@ -29,7 +29,28 @@ local function set_filer_keymaps()
   -- 展開・折りたたみ
   vim.keymap.set('n', 'o', "<Cmd>call ddu#ui#do_action('expandItem', { 'mode': 'toggle' })<Cr>", opts)
   -- open
-  vim.keymap.set('n', '<Cr>', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'open' })<Cr>", opts)
+  vim.keymap.set('n', '<Cr>', function()
+    local item = vim.fn['ddu#ui#get_item']()
+    if item and item.action then
+      vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
+    else
+      vim.fn['ddu#ui#do_action']('itemAction', { name = 'open' })
+    end
+  end, opts)
+  vim.keymap.set('n', '<Tab>', function()
+    local item = vim.fn['ddu#ui#get_item']()
+    if item and item.action then
+      if item.action.isDirectory then
+        vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow'})
+      else
+        vim.fn['ddu#ui#do_action']('itemAction', {
+          name = 'open',
+          params = { command = 'tabedit'},
+        })
+      end
+    end
+  end, opts)
+
   -- cd directory
   vim.keymap.set('n', 'l', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'narrow' })<Cr>", opts)
   vim.keymap.set('n', 'h', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'narrow', 'params': { 'path': '..' } })<Cr>", opts)

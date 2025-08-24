@@ -5,11 +5,35 @@ on_event = ['InsertEnter', 'CmdLineEnter']
 hooks_file = '$BASE_DIR/ddc.lua'
 
 [[plugins]]
+repo = 'Shougo/pum.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-ui-native'
 on_source = 'ddc.vim'
 
 [[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+depends = 'pum.vim'
+on_soource = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-source-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-source-file'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-buffer'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline-history'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -19,3 +43,4 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-filter-sorter_rank'
 on_source = 'ddc.vim'
+
