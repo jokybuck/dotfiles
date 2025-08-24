@@ -1,14 +1,23 @@
 -- lua_add {{{
 
-vim.api.nvim_create_user_command('DduFiler', function()
+vim.keymap.set('n', '<Space>e', function()
+  local winid = vim.fn.win_getid()
+  local cwd = vim.fn.getcwd()
+
+  -- タブローカル変数から path を取得（あれば）
+  local path = vim.t.ddu_ui_filer_path or cwd
+
   vim.fn['ddu#start']({
-    name = 'filer',
+      name = 'filer-' .. winid,
     ui = 'filer',
+    resume = true,
     sources = {
       {
         name = 'file',
-        params = {
-          path = vim.fn.expand('%:p:h'),
+        options = {
+          path = path,
+          limitPath = cwd,
+          columns = { 'filename' },
         },
       },
     },
