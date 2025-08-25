@@ -9,16 +9,15 @@ export class Config extends BaseConfig {
       ui: "ff",
       uiParams: {
         ff: {
-          filterFloatingPosition: "bottom",
+          split: "floating",
+          startFilter: true,
+          filterFloatingPosition: "top",
           filterSplitDirection: "floating",
           floatingBorder: "rounded",
           previewFloating: true,
           previewFloatingBorder: "rounded",
           previewFloatingTitle: "Preview",
-          previewSplit: "horizontal",
           prompt: "> ",
-          split: "floating",
-          startFilter: true,
         },
         filer: {
           split: "floating",
@@ -35,6 +34,9 @@ export class Config extends BaseConfig {
         },
       },
       kindOptions: {
+        action: {
+	  defaultAction: "do",
+        },
         file: {
 	  defaultAction: "open",
 	},

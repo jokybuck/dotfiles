@@ -1,8 +1,20 @@
 -- lua_add {{{
+local function set_filter_keymaps()
+  local opts = { noremap = true, silent = true, buffer = true }
 
--- }}}
--- lua_add {{{
+end
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'ddu-filter',
+  callback = set_filter_keymaps,
+})
 
+vim.api.nvim_create_autocmd("User", {
+  pattern = "Ddu:uiDone",
+  nested = true,
+  callback = function()
+    vim.fn["ddu#ui#async_action"]("openFilterWindow")
+  end,
+})
 --}}}
 
 -- lua_source {{{

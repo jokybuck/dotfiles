@@ -32,9 +32,11 @@ local function set_filer_keymaps()
   vim.keymap.set('n', '<Cr>', function()
     local item = vim.fn['ddu#ui#get_item']()
     if item and item.action then
-      vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
-    else
-      vim.fn['ddu#ui#do_action']('itemAction', { name = 'open' })
+      if item.action.isDirectory then
+        vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
+      else
+        vim.fn['ddu#ui#do_action']('itemAction', { name = 'open' })
+      end
     end
   end, opts)
   vim.keymap.set('n', '<Tab>', function()
