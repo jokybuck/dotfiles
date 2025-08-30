@@ -8,7 +8,7 @@ vim.keymap.set('n', '<Space>e', function()
   local path = vim.t.ddu_ui_filer_path or cwd
 
   vim.fn['ddu#start']({
-      name = 'filer-' .. winid,
+    name = 'filer-' .. winid,
     ui = 'filer',
     resume = true,
     sources = {
@@ -70,7 +70,8 @@ local function set_filer_keymaps()
   --
   vim.keymap.set('n', 'A', "<Cmd>call ddu#ui#do_action('inputAction')<Cr>", opts)
   -- preview
-  vim.keymap.set('n', 'p', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'preview' })<Cr>", opts)
+  --vim.keymap.set('n', 'p', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'preview' })<Cr>", opts)
+  vim.keymap.set('n', 'p', "<Cmd>call ddu#ui#do_action('togglePreview')<Cr>", opts)
   -- close
   vim.keymap.set('n', 'q', "<Cmd>call ddu#ui#do_action('quit')<Cr>", opts)
   vim.keymap.set('n', '<Esc>', "<Cmd>call ddu#ui#do_action('quit')<Cr>", opts)

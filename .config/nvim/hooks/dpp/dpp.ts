@@ -61,9 +61,10 @@ export class Config extends BaseConfig {
       const action = tomlExt.actions.load;
 
       const tomlPromises = [
-        { path: "$BASE_DIR/dpp.toml", lazy: false },
-        { path: "$BASE_DIR/ddc.toml", lazy: true },
-        { path: "$BASE_DIR/ddu.toml", lazy: true },
+        { path: "$BASE_DIR/toml/dpp.toml", lazy: false },
+        { path: "$BASE_DIR/toml/ddc.toml", lazy: true },
+        { path: "$BASE_DIR/toml/ddu.toml", lazy: true },
+        { path: "$BASE_DIR/toml/dpplazy.toml", lazy: true },
       ].map(async (tomlFile) =>
         action.callback({
           denops: args.denops,

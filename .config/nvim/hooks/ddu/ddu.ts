@@ -7,22 +7,46 @@ export class Config extends BaseConfig {
   override config(args: ConfigArguments): Promise<void> {
     args.contextBuilder.patchGlobal({
       ui: "ff",
+      uiOptions: {
+        //_: {
+        //  filterInputFunc: "cmdline#input",
+        //  filterInputOptsFunc: "cmdline#input_opts",
+        //},
+        filer: {
+          toggle: true,
+        },
+      },
       uiParams: {
         ff: {
+          autoAction: {
+            name: "preview",
+            delay: 100,
+          },
           split: "floating",
-          startFilter: true,
-          filterFloatingPosition: "top",
-          filterSplitDirection: "floating",
           floatingBorder: "rounded",
+          startFilter: true,
+          prompt: "> ",
           previewFloating: true,
           previewFloatingBorder: "rounded",
           previewFloatingTitle: "Preview",
-          prompt: "> ",
+          filterSplitDirection: "floating",
+          filterFloatingPosition: "top",
         },
         filer: {
+          autoAction: {
+            name: "preview",
+          },
           split: "floating",
           floatingBorder: "rounded",
-	  floatingTitle: "Filer",
+          floatingTitle: "Filer",
+          winWidth: "&columns / 2 + 1",
+          winHeight: "&lines / 2 + 1",
+          previewSplit: "floating",
+          previewFloating: true,
+          previewFloatingBorder: "rounded",
+          previewFloatingTitle: "Preview",
+          previewWidth: 80,
+          previewHeight: 20,
         },
       },
       sourceOptions: {
@@ -33,13 +57,24 @@ export class Config extends BaseConfig {
           ],
         },
       },
+      sourceParams: {
+        rg: {
+          args: [
+            "--smart-case",
+            "--column",
+            "--no-heading",
+            "--color",
+            "never",
+          ],
+        },
+      },
       kindOptions: {
         action: {
-	  defaultAction: "do",
+	      defaultAction: "do",
         },
         file: {
-	  defaultAction: "open",
-	},
+	      defaultAction: "open",
+	    },
       },
     });
     args.contextBuilder.patchLocal("file_recursive", {
@@ -58,11 +93,6 @@ export class Config extends BaseConfig {
           },
         },
       ],
-      kindOptions: {
-        file: {
-          defaultAction: "open",
-        },
-      },
     });
     args.contextBuilder.patchLocal("filer", {
       ui: "filer",
@@ -74,16 +104,11 @@ export class Config extends BaseConfig {
       ],
       sourceOptions: {
         _: {
-	  columns: [ "filename" ],
-	},
-      },
-      kindOptions: {
-        file: {
-          defaultAction: "open",
+	      columns: [ "filename" ],
         },
       },
     });
-    args.contextBuilder.patchLocal("colorscheme", {
+    args.contextBuilder.patchLocal("rg", {
       sources: [
         {
           name: [ "colorscheme" ],

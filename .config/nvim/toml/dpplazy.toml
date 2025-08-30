@@ -1,0 +1,24 @@
+[[plugins]]
+repo = 'Shougo/cmdline.vim'
+#on_source = ['ddu.vim']
+#hook_add = '''
+#  cnoremap <CR>  <Cmd>call cmdline#disable()<CR><CR>
+#'''
+#hook_source = '''
+#  call cmdline#set_option(#{
+#    \   highlight_window: 'None',
+#    \ })
+#'''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+repo = 'mason-org/mason.nvim'
+
+[[plugins]]
+repo = 'mason-org/mason-lspconfig.nvim'
+depends = ['mason.nvim', 'nvim-lspconfig']

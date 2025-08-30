@@ -2,7 +2,7 @@
 repo = 'Shougo/ddc.vim'
 depends = 'denops.vim'
 on_event = ['InsertEnter', 'CmdLineEnter']
-hooks_file = '$BASE_DIR/ddc.lua'
+hooks_file = '$BASE_DIR/hooks/ddu/ddc.lua'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
@@ -43,4 +43,3 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-filter-sorter_rank'
 on_source = 'ddc.vim'
-

@@ -2,7 +2,7 @@
 repo = 'Shougo/ddu.vim'
 depends = ['denops.vim']
 on_func = ['ddu#start']
-hooks_file = '$BASE_DIR/ddu.lua'
+hooks_file = '$BASE_DIR/hooks/ddu/ddu.lua'
 
 [[plugins]]
 repo = 'Shougo/ddu-commands.vim'
@@ -11,12 +11,12 @@ on_cmd = ['Ddu']
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
-hooks_file = '$BASE_DIR/ddu-ui-ff.lua'
+hooks_file = '$BASE_DIR/hooks/ddu/ddu-ui-ff.lua'
 on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
-hooks_file = '$BASE_DIR/ddu-ui-filer.lua'
+hooks_file = '$BASE_DIR/hooks/ddu/ddu-ui-filer.lua'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -41,6 +41,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-source-path_history'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shun/ddu-source-rg'
 on_source = 'ddu.vim'
 
 [[plugins]]
