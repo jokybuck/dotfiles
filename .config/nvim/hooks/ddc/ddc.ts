@@ -8,21 +8,54 @@ export class Config extends BaseConfig {
   override async config(args: ConfigArguments): Promise<void> {
     const commonSources = [
       "around",
+      "lsp",
     ]
-    args.contextBuiler.patchGlobal({
+    args.contextBuilder.patchGlobal({
+      ui: "pum",
+      autoCompleteEvents: [
+        "CmdlineEnter",
+        "CmdlineChanged",
+        "InsertEnter",
+        "TextChangedI",
+        "TextChangedP",
+        "TextChangedT",
+      ],
+      cmdlineSources: {
+        ":": [
+          "cmdline",
+          "cmdline_history",
+          "around",
+          "register",
+        ],
+      },
       sources: commonSources,
       sourceOptions: {
         _: {
-	  ignoreCase: true,
-	  matchers: [
+	      ignoreCase: true,
+	      matchers: [
             "matcher_head",
-	  ],
-	  sorters: [
+	      ],
+	      sorters: [
             "sorter_rank",
           ],
-	},
-	around: {
-          mark: "A",
+          converters: [
+            "converter_remove_overlap"
+          ],
+	    },
+	    around: {
+          mark: "around",
+        },
+	    lsp: {
+          mark: "lsp",
+          forceCompletionPattern: "\.\w*|:\w*|->\w*",
+        },
+      },
+      sourceParams: {
+        lsp: {
+          enableAdditionalTextEdit: true,
+          enableDisplayDetail: true,
+          enableMatchLabel: true,
+          enableResolveItem: true,
         },
       },
     });

@@ -18,6 +18,15 @@ vim.api.nvim_create_autocmd('FileType',{
   callback = set_ff_keymaps,
 })
 
+local function set_ff_filter_keymaps()
+  local opts = { noremap = true, silent = true, buffer = true }
+  vim.keymap.set({ 'i' }, '<Cr>', function()
+    vim.cmd.stopinsert()
+    vim.fn['ddu#ui#do_action']('closeFilterWindow')
+  end, opts)
+  vim.keymap.set({ 'n' }, '<Cr>', "<Cmd>call ddu#ui#do_action('closeFilterWindow')<Cr>", opts)
+end
+
 --}}}
 
 -- lua_source {{{

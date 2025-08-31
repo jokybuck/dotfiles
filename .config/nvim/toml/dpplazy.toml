@@ -12,13 +12,33 @@ repo = 'Shougo/cmdline.vim'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+on_event = ['BufRead', 'BufNewFile']
+on_cmd = ['TSInstall', 'TSUpdate']
+rev = 'main'
+hooks_file = '$BASE_DIR/hooks/treesitter.lua'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 
 [[plugins]]
 repo = 'mason-org/mason.nvim'
+depends = ['nvim-lspconfig']
+lua_source = '''
+  require("mason").setup()
+'''
 
 [[plugins]]
 repo = 'mason-org/mason-lspconfig.nvim'
 depends = ['mason.nvim', 'nvim-lspconfig']
+on_event = ['BufReadPre', 'BufNewFile' ]
+lua_source = '''
+  local ensure_installed = {
+    "lua_ls",
+    "denols",
+  }
+  require("mason-lspconfig").setup({
+    ensure_installed = ensure_installed,
+  })
+
+  require("core.lsp")
+'''

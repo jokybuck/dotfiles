@@ -40,6 +40,6 @@ vim.api.nvim_create_autocmd('FileType', {
 -}}}
 
 -- lua_source {{{
-local path = vim.fn.expand('$BASE_DIR/ddu.ts')
+local path = vim.fn.expand('$BASE_DIR/hooks/ddu/ddu.ts')
 vim.fn['ddu#custom#load_config'](path)
 -- }}}

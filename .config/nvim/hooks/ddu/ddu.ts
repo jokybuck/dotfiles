@@ -75,12 +75,15 @@ export class Config extends BaseConfig {
         file: {
 	      defaultAction: "open",
 	    },
+        help: {
+	      defaultAction: "open",
+	    },
       },
     });
     args.contextBuilder.patchLocal("file_recursive", {
       sources: [
         {
-          name: [ "file_rec" ],
+          name: "file_rec",
           options: {
             converters: [
               "converter_devicon",
@@ -98,8 +101,8 @@ export class Config extends BaseConfig {
       ui: "filer",
       sources: [
         {
-          name: [ "file" ],
-          param: {},
+          name: "file",
+          params: {},
         },
       ],
       sourceOptions: {
@@ -111,7 +114,7 @@ export class Config extends BaseConfig {
     args.contextBuilder.patchLocal("rg", {
       sources: [
         {
-          name: [ "colorscheme" ],
+          name: "colorscheme",
         },
       ],
       kindOptions: {
