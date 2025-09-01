@@ -1,5 +1,5 @@
 -- lua_add {{{
-function CommandlinePre(mode)
+local function CommandlinePre(mode)
   -- b:prev_buffer_config を保存
   local prev_buffer_config = vim.b.prev_buffer_config
 

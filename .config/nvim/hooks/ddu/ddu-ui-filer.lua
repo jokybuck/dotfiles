@@ -75,6 +75,10 @@ local function set_filer_keymaps()
   -- close
   vim.keymap.set('n', 'q', "<Cmd>call ddu#ui#do_action('quit')<Cr>", opts)
   vim.keymap.set('n', '<Esc>', "<Cmd>call ddu#ui#do_action('quit')<Cr>", opts)
+  -- split
+  vim.keymap.set('n', 's', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'split' } })<Cr>", opts)
+  -- vsplit
+  vim.keymap.set('n', 'v', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'vsplit' } })<Cr>", opts)
 end
 
 vim.api.nvim_create_autocmd('FileType', {
