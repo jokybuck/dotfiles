@@ -23,21 +23,21 @@ end, {})
 local function set_filter_keymaps()
   local opts = { noremap = true, silent = true, buffer = true }
 
+  vim.keymap.set('i', '<Cr>', function()
+    vim.cmd.stopinsert()
+    vim.fn['ddu#ui#do_action']('closeFilterWindow')
+  end, opts)
+  vim.keymap.set('n', '<Cr>', function()
+    vim.fn['ddu#ui#do_action']('closeFilterWindow')
+  end, opts)
 end
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'ddu-filter',
   callback = set_filter_keymaps,
 })
 
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "Ddu:uiDone",
---   nested = true,
---   callback = function()
---     vim.fn["ddu#ui#async_action"]("openFilterWindow")
---   end,
--- })
-
--}}}
+-- }}}
 
 -- lua_source {{{
 local path = vim.fn.expand('$BASE_DIR/hooks/ddu/ddu.ts')

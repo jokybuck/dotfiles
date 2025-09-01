@@ -7,6 +7,15 @@ vim.o.number = true
 -- vim.o.relativenumber = true
 vim.o.showmatch = true
 
+vim.o.list = true
+--vim.o.listchars = {
+--  tab = '▸ ',
+--  trail = '⋅',
+--  nbsp = '␣',
+--  extends = '❯',
+--  precedes = '❮'
+--}
+
 --
 vim.opt.expandtab = true      -- タブをスペースに変換する
 vim.opt.shiftwidth = 4        -- 自動インデント時のスペース数
