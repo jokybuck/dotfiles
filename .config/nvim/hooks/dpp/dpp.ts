@@ -64,13 +64,14 @@ export class Config extends BaseConfig {
         { path: "$BASE_DIR/toml/dpp.toml", lazy: false },
         { path: "$BASE_DIR/toml/ddc.toml", lazy: true },
         { path: "$BASE_DIR/toml/ddu.toml", lazy: true },
+        { path: "$BASE_DIR/toml/ddt.toml", lazy: true },
         { path: "$BASE_DIR/toml/dpplazy.toml", lazy: true },
       ].map(async (tomlFile) =>
         action.callback({
           denops: args.denops,
           context,
           options,
-	  protocols: await args.dpp.getProtocols(args.denops, options),
+          protocols: await args.dpp.getProtocols(args.denops, options),
           extOptions: tomlOptions,
           extParams: tomlParams,
           actionParams: {

@@ -68,9 +68,7 @@ vim.fn['ddc#custom#load_config'](path)
 
 -- TAB キー
 vim.keymap.set('i', '<Tab>', function()
-  if vim.fn["ddc#ui#inline#visible"]() then
-    return vim.fn['ddc#map#insert_item'](0)
-  elseif vim.fn["pum#visible"]() == 1 then
+  if vim.fn["pum#visible"]() == 1 then
     return '<Cmd>call pum#map#insert_relative(+1, "empty")<CR>'
   elseif vim.fn.col(".") <= 1 then
     return "<Tab>"
