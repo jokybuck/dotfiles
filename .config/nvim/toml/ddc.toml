@@ -2,7 +2,12 @@
 repo = 'Shougo/ddc.vim'
 depends = 'denops.vim'
 on_event = ['InsertEnter', 'CmdLineEnter']
-hooks_file = '$BASE_DIR/hooks/ddc/ddc.lua'
+lua_add = '''
+require('plugins.ddc').hook_add()
+'''
+lua_source = '''
+require('plugins.ddc').hook_source()
+'''
 
 [[plugins]]
 repo = 'Shougo/pum.vim'

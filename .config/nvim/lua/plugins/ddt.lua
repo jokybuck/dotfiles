@@ -1,22 +1,4 @@
--- lua_add {{{
-vim.keymap.set('n', '<Space>s', function()
-  vim.fn['ddt#start']({
-    name = vim.g.ddt_ui_shell_last_name or ('shell-' .. vim.fn.win_getid()),
-    ui = 'shell'
-  })
-end, { noremap = true })
-
-vim.keymap.set('n', '<Space>t', function()
-  vim.fn['ddt#start']({
-    name = vim.g.ddt_ui_terminal_last_name or ('terminal-' .. vim.fn.win_getid()),
-    ui = 'terminal'
-  })
-end, { noremap = true })
--- }}}
-
--- lua_source {{{
-local path = vim.fn.expand('$BASE_DIR/hooks/ddt/ddt.ts')
-vim.fn['ddt#custom#load_config'](path)
+local M = {}
 
 local function set_terminal_keymaps()
   local opts = { buffer = true, noremap = true, silent = true }
@@ -25,11 +7,6 @@ local function set_terminal_keymaps()
   vim.keymap.set("n", "<c-y>", "<cmd>call ddt#ui#do_action('pasteprompt')<Cr>", opts)
   vim.keymap.set("n", "<cr>", "<cmd>call ddt#ui#do_action('executeline')<Cr>", opts)
 end
-
-vim.api.nvim_create_autocmd("filetype", {
-  pattern = 'ddt-terminal',
-  callback = set_terminal_keymaps,
-})
 
 local function set_shell_keymaps()
   local opts = { buffer = true, noremap = true, silent = true }
@@ -46,11 +23,35 @@ local function set_shell_keymaps()
   vim.keymap.set("i", "<C-z>", "<Cmd>call ddt#ui#do_action('pushBufferStack')<Cr>", opts)
 end
 
-vim.api.nvim_create_autocmd("filetype", {
-  pattern = 'ddt-shell',
-  callback = set_shell_keymaps,
-})
+M.hook_add = function()
+  vim.keymap.set('n', '<Space>s', function()
+    vim.fn['ddt#start']({
+      name = vim.g.ddt_ui_shell_last_name or ('shell-' .. vim.fn.win_getid()),
+      ui = 'shell'
+    })
+  end, { noremap = true })
 
+  vim.keymap.set('n', '<Space>t', function()
+    vim.fn['ddt#start']({
+      name = vim.g.ddt_ui_terminal_last_name or ('terminal-' .. vim.fn.win_getid()),
+      ui = 'terminal'
+    })
+  end, { noremap = true })
+end
 
-vim.
--- }}}
+M.hook_source = function()
+  local path = vim.fn.expand('$BASE_DIR/denops/ddt.ts')
+  vim.fn['ddt#custom#load_config'](path)
+
+  vim.api.nvim_create_autocmd("filetype", {
+    pattern = 'ddt-terminal',
+    callback = set_terminal_keymaps,
+  })
+
+  vim.api.nvim_create_autocmd("filetype", {
+    pattern = 'ddt-shell',
+    callback = set_shell_keymaps,
+  })
+end
+
+return M

@@ -1,0 +1,13 @@
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+depends = 'nvim-web-devicons'
+lua_source = '''
+require('plugins.lualine')
+'''
+
+[[plugins]]
+repo = 'nvim-tree/nvim-web-devicons'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+

@@ -1,28 +1,4 @@
--- lua_add {{{
-
-vim.keymap.set('n', '<Space>e', function()
-  local winid = vim.fn.win_getid()
-  local cwd = vim.fn.getcwd()
-
-  -- タブローカル変数から path を取得（あれば）
-  local path = vim.t.ddu_ui_filer_path or cwd
-
-  vim.fn['ddu#start']({
-    name = 'filer-' .. winid,
-    ui = 'filer',
-    resume = true,
-    sources = {
-      {
-        name = 'file',
-        options = {
-          path = path,
-          limitPath = cwd,
-          columns = { 'filename' },
-        },
-      },
-    },
-  })
-end, {})
+local M = {}
 
 local function set_filer_keymaps()
   local opts = { noremap = true, silent = true, buffer = true }
@@ -81,12 +57,35 @@ local function set_filer_keymaps()
   vim.keymap.set('n', 'v', "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'vsplit' } })<Cr>", opts)
 end
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'ddu-filer',
-  callback = set_filer_keymaps,
-})
--- }}}
+M.hook_add = function()
+  vim.keymap.set('n', '<Space>e', function()
+    local winid = vim.fn.win_getid()
+    local cwd = vim.fn.getcwd()
 
--- lua_source {{{
+    -- タブローカル変数から path を取得（あれば）
+    local path = vim.t.ddu_ui_filer_path or cwd
 
--- }}}
+    vim.fn['ddu#start']({
+      name = 'filer-' .. winid,
+      ui = 'filer',
+      resume = true,
+      sources = {
+        {
+          name = 'file',
+          options = {
+            path = path,
+            limitPath = cwd,
+            columns = { 'filename' },
+          },
+        },
+      },
+    })
+  end, {})
+
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'ddu-filer',
+    callback = set_filer_keymaps,
+  })
+end
+
+return M

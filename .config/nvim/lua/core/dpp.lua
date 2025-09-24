@@ -18,7 +18,7 @@ local function dpp_init_plugin(plugin)
 end
 
 vim.env.BASE_DIR = vim.fn.expand('<script>:h')
-local dppConfig = vim.fn.expand("$BASE_DIR/hooks/dpp/dpp.ts")
+local dppConfig = vim.fn.expand("$BASE_DIR/denops/dpp.ts")
 
 dpp_init_plugin("Shougo/dpp.vim")
 local dpp = require("dpp")

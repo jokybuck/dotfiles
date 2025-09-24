@@ -1,4 +1,4 @@
--- lua_add {{{
+local M = {}
 
 local function set_ff_keymaps()
   local opts = { noremap = true, silent = true, buffer = true }
@@ -13,11 +13,6 @@ local function set_ff_keymaps()
   vim.keymap.set({ 'n' }, 'p', "<Cmd>call ddu#ui#do_action('togglePreview')<Cr>", opts)
 end
 
-vim.api.nvim_create_autocmd('FileType',{
-  pattern = 'ddu-ff',
-  callback = set_ff_keymaps,
-})
-
 local function set_ff_filter_keymaps()
   local opts = { noremap = true, silent = true, buffer = true }
   vim.keymap.set({ 'i' }, '<Cr>', function()
@@ -27,7 +22,12 @@ local function set_ff_filter_keymaps()
   vim.keymap.set({ 'n' }, '<Cr>', "<Cmd>call ddu#ui#do_action('closeFilterWindow')<Cr>", opts)
 end
 
---}}}
+M.hook_add = function()
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'ddu-ff',
+    callback = set_ff_keymaps,
+  })
 
--- lua_source {{{
--- }}}
+end
+
+return M
