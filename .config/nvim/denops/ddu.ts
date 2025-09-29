@@ -69,14 +69,17 @@ export class Config extends BaseConfig {
       },
       kindOptions: {
         action: {
-	      defaultAction: "do",
+          defaultAction: "do",
         },
         file: {
-	      defaultAction: "open",
-	    },
+          defaultAction: "open",
+        },
         help: {
-	      defaultAction: "open",
-	    },
+          defaultAction: "open",
+        },
+        source: {
+          defaultAction: "execute",
+        },
       },
     });
     args.contextBuilder.patchLocal("file_recursive", {

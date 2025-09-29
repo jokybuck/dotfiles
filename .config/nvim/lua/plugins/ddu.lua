@@ -34,7 +34,7 @@ local function cleanup_ddu_filter()
 end
 
 M.hook_add = function()
-  vim.keymap.set('n', '<Space>g', function()
+  vim.keymap.set('n', '<Leader>g', function()
     vim.fn['ddu#start']({
       name = 'search',
       resume = false,
@@ -53,11 +53,6 @@ M.hook_add = function()
       },
     })
   end, {})
-
-  -- vim.api.nvim_create_autocmd('FileType', {
-  --   pattern = 'ddu-filter',
-  --   callback = set_filter_keymaps,
-  -- })
 
   vim.api.nvim_create_autocmd('User', {
     pattern = 'Ddu:uiOpenFilterWindow',
