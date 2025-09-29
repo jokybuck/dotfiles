@@ -13,21 +13,20 @@ vim.opt.listchars = {
   trail = '⋅',
   nbsp = '␣',
   extends = '❯',
-  precedes = '❮'
+  precedes = '❮',
 }
 
 -- indent
-vim.opt.expandtab = true      -- タブをスペースに変換する
-vim.opt.shiftwidth = 4        -- 自動インデント時のスペース数
-vim.opt.tabstop = 4           -- タブ文字が何スペース分に見えるか
-vim.opt.softtabstop = 4       -- Tabキーを押したときに入るスペース数
+vim.opt.expandtab = true -- タブをスペースに変換する
+vim.opt.shiftwidth = 4 -- 自動インデント時のスペース数
+vim.opt.tabstop = 4 -- タブ文字が何スペース分に見えるか
+vim.opt.softtabstop = 4 -- Tabキーを押したときに入るスペース数
 
 -- clipboard
-vim.opt.clipboard:append({ "unnamedplus" })
+vim.opt.clipboard:append({ 'unnamedplus' })
 
 -- statusline
 vim.opt.laststatus = 3
 
 -- colorscheme
 vim.opt.termguicolors = true -- 24 ビットカラーを使用
-

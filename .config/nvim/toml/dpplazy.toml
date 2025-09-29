@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'Shougo/cmdline.vim'
+on_source = ['ddu.vim']
 #on_source = ['ddu.vim']
 #hook_add = '''
 #  cnoremap <CR>  <Cmd>call cmdline#disable()<CR><CR>
@@ -16,7 +17,7 @@ on_event = ['BufRead', 'BufNewFile']
 on_cmd = ['TSInstall', 'TSUpdate']
 rev = 'main'
 lua_source = '''
-require('plugins.treesitter').hook_source()
+  require('plugins.treesitter').hook_source()
 '''
 
 [[plugins]]
@@ -26,7 +27,7 @@ repo = 'neovim/nvim-lspconfig'
 repo = 'mason-org/mason.nvim'
 depends = ['nvim-lspconfig']
 lua_source = '''
-  require("mason").setup()
+  require('mason').setup()
 '''
 
 [[plugins]]
@@ -38,12 +39,48 @@ lua_source = '''
     "lua_ls",
     "denols",
   }
-  require("mason-lspconfig").setup({
+  require('mason-lspconfig').setup({
     ensure_installed = ensure_installed,
   })
 
   require("core.lsp")
 '''
+
+[[plugins]]
+repo = 'jay-babu/mason-null-ls.nvim'
+depends = ['mason.nvim', 'none-ls.nvim']
+on_event = [ "BufReadPre", "BufNewFile" ]
+lua_source = '''
+  local ensure_installed = {
+    "stylua",
+  }
+  require('mason-null-ls').setup({
+    ensure_installed = ensure_installed,
+  })
+'''
+
+[[plugins]]
+repo = 'nvimtools/none-ls.nvim'
+depends = [ 'plenary.nvim' ]
+lua_source = '''
+  local null_ls = require("null-ls")
+
+  null_ls.setup({
+    sources = {
+      null_ls.builtins.formatting.stylua,
+    },
+  })
+
+  -- 保存時に自動フォーマット
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function(args)
+      vim.lsp.buf.format({ bufnr = args.buf, timeout_ms = 3000, async = true })
+    end,
+  })
+'''
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
@@ -57,4 +94,11 @@ repo = 'matsui54/denops-popup-preview.vim'
 on_source = 'ddc.vim'
 hook_source = '''
 call popup_preview#enable()
+'''
+
+[[plugins]]
+repo = 'j-hui/fidget.nvim'
+on_event = 'BufEnter'
+lua_source = '''
+  require("fidget").setup()
 '''

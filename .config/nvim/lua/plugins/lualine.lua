@@ -1,5 +1,6 @@
 require('lualine').setup({
   options = {
-    theme = 'iceberg'
+    theme = 'iceberg',
+    icons_enabled = true,
   },
 })

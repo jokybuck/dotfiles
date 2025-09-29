@@ -8,10 +8,10 @@ export class Config extends BaseConfig {
     args.contextBuilder.patchGlobal({
       ui: "ff",
       uiOptions: {
-        //_: {
-        //  filterInputFunc: "cmdline#input",
-        //  filterInputOptsFunc: "cmdline#input_opts",
-        //},
+        _: {
+          filterInputFunc: "cmdline#input",
+          filterInputOptsFunc: "cmdline#input_opts",
+        },
         filer: {
           toggle: true,
         },
@@ -20,33 +20,32 @@ export class Config extends BaseConfig {
         ff: {
           autoAction: {
             name: "preview",
-            delay: 100,
           },
           split: "floating",
+          winWidth: '&columns * 2 / 3',
+          winHeight: '&lines * 2 / 3',
+          winRow: '(&lines - eval(uiParams.winHeight)) / 2',
           floatingBorder: "rounded",
-          startFilter: true,
-          prompt: "> ",
           previewFloating: true,
+          previewSplit: "horizontal",
           previewFloatingBorder: "rounded",
           previewFloatingTitle: "Preview",
-          filterSplitDirection: "floating",
-          filterFloatingPosition: "top",
+          previewWidth: 'eval(uiParams.winWidth)',
         },
         filer: {
           autoAction: {
             name: "preview",
           },
           split: "floating",
+          winWidth: '&columns * 2 / 3',
+          winHeight: '&lines * 2 / 3',
+          winRow: '(&lines - eval(uiParams.winHeight)) / 2',
           floatingBorder: "rounded",
           floatingTitle: "Filer",
-          winWidth: "&columns / 2 + 1",
-          winHeight: "&lines / 2 + 1",
-          previewSplit: "floating",
-          previewFloating: true,
+          previewSplit: "horizontal",
           previewFloatingBorder: "rounded",
           previewFloatingTitle: "Preview",
-          previewWidth: 80,
-          previewHeight: 20,
+          previewWidth: 'eval(uiParams.winWidth)',
         },
       },
       sourceOptions: {
