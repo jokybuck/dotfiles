@@ -34,22 +34,10 @@ local function cleanup_ddu_filter()
 end
 
 M.hook_add = function()
-  vim.keymap.set('n', '<Leader>g', function()
+  vim.keymap.set('n', '<Leader>ds', function()
     vim.fn['ddu#start']({
-      name = 'search',
-      resume = false,
       sources = {
-        {
-          name = 'rg',
-          params = {
-            input = vim.fn.input('Pattern: ', vim.fn.expand('<cword>')),
-          },
-        },
-      },
-      uiParams = {
-        ff = {
-          ignoreEmpty = true,
-        },
+        { name = 'source' },
       },
     })
   end, {})
