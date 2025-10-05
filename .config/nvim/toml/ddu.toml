@@ -3,10 +3,10 @@ repo = 'Shougo/ddu.vim'
 depends = ['denops.vim']
 on_func = ['ddu#start']
 lua_add = '''
-require('plugins.ddu').hook_add()
+  require('plugins.ddu').hook_add()
 '''
 lua_source = '''
-require('plugins.ddu').hook_source()
+  require('plugins.ddu').hook_source()
 '''
 
 [[plugins]]
@@ -14,19 +14,23 @@ repo = 'Shougo/ddu-commands.vim'
 depends = 'ddu.vim'
 on_cmd = ['Ddu']
 
+### ui
+
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
 on_source = 'ddu.vim'
 lua_add = '''
-require('plugins.ddu-ui-ff').hook_add()
+  require('plugins.ddu-ui-ff').hook_add()
 '''
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
 on_source = 'ddu.vim'
 lua_add = '''
-require('plugins.ddu-ui-filer').hook_add()
+  require('plugins.ddu-ui-filer').hook_add()
 '''
+
+### sources
 
 [[plugins]]
 repo = 'Shougo/ddu-source-action'
@@ -42,6 +46,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-source-file_rec'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-file_external'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -85,22 +93,52 @@ repo = 'kuuote/ddu-source-git_status'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'kuuote/ddu-source-git_diff'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'kyoh86/ddu-source-git_branch'
 on_source = 'ddu.vim'
+
+### kinds
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+on_source = 'ddu.vim'
+
+### filters
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = 'Shougo/ddu-kind-file'
+repo = 'Shougo/ddu-filter-matcher_relative'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = 'Shougo/ddu-column-filename'
+repo = 'Shougo/ddu-filter-matcher_hidden'
 on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'uga-rosa/ddu-filter-converter_devicon'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kyoh86/ddu-filter-converter_hl_dir'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'nabezokodaikon/ddu-filter-converter_git_status'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kuuote/ddu-filter-sorter_mtime'
+on_source = 'ddu.vim'
+
+# column
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
 on_source = 'ddu.vim'
 

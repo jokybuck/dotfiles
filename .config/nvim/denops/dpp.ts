@@ -124,7 +124,7 @@ export class Config extends BaseConfig {
         extOptions: localOptions,
         extParams: localParams,
         actionParams: {
-          directory: "~/work",
+          directory: "~/workspace/dev/plugins",
           options: {
             frozen: true,
             merged: false,

@@ -12,7 +12,6 @@ local function setup_ddu_filter()
     row = math.floor((lines - (lines * 2 / 3)) / 2) - 3,
     width = width,
   })
-  vim.fn['cmdline#enable']()
 
   vim.fn['ddu#ui#save_cmaps']({ '<C-j>', '<C-k>' })
 
@@ -28,20 +27,10 @@ end
 local function cleanup_ddu_filter()
   vim.opt.cursorline = false
 
-  vim.fn['cmdline#disable']()
-
   vim.fn['ddu#ui#restore_cmaps']()
 end
 
 M.hook_add = function()
-  vim.keymap.set('n', '<Leader>ds', function()
-    vim.fn['ddu#start']({
-      sources = {
-        { name = 'source' },
-      },
-    })
-  end, {})
-
   vim.api.nvim_create_autocmd('User', {
     pattern = 'Ddu:uiOpenFilterWindow',
     callback = setup_ddu_filter,

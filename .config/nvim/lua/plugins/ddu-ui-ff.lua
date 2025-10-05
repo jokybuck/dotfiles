@@ -11,15 +11,13 @@ local function set_ff_keymaps()
   vim.keymap.set({ 'n' }, 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<Cr>", opts)
   -- プレビュー
   vim.keymap.set({ 'n' }, 'p', "<Cmd>call ddu#ui#do_action('togglePreview')<Cr>", opts)
-end
-
-local function set_ff_filter_keymaps()
-  local opts = { noremap = true, silent = true, buffer = true }
-  vim.keymap.set({ 'i' }, '<Cr>', function()
-    vim.cmd.stopinsert()
-    vim.fn['ddu#ui#do_action']('closeFilterWindow')
-  end, opts)
-  vim.keymap.set({ 'n' }, '<Cr>', "<Cmd>call ddu#ui#do_action('closeFilterWindow')<Cr>", opts)
+  -- choose action
+  vim.keymap.set({ 'n' }, ';', "<Cmd>call ddu#ui#do_action('chooseAction')<Cr>", opts)
+  -- input action
+  vim.keymap.set({ 'n' }, ':', "<Cmd>call ddu#ui#do_action('inputAction')<Cr>", opts)
+  -- toggle item
+  vim.keymap.set('n', '<Space>', "<Cmd>call ddu#ui#do_action('toggleSelectItem')<Cr>", opts)
+  vim.keymap.set('n', '*', "<Cmd>call ddu#ui#do_action('toggleAllItems')<Cr>", opts)
 end
 
 M.hook_add = function()
@@ -27,7 +25,6 @@ M.hook_add = function()
     pattern = 'ddu-ff',
     callback = set_ff_keymaps,
   })
-
 end
 
 return M
