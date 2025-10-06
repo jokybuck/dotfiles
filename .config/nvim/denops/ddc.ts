@@ -11,7 +11,15 @@ export class Config extends BaseConfig {
       "lsp",
     ]
     args.contextBuilder.patchGlobal({
-      ui: "pum",
+      //ui: "pum",
+      dynamicUi: (_denops: Denops, args: Record<string, unknown>) => {
+        const uiArgs = args as {
+          items: DdcItem[],
+        };
+        return Promise.resolve(
+          uiArgs.items.length == 1 ? "inline" : "pum"
+        );
+      },
       autoCompleteEvents: [
         "CmdlineEnter",
         "CmdlineChanged",
