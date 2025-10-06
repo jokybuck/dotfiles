@@ -31,21 +31,21 @@ export class Config extends BaseConfig {
       sources: commonSources,
       sourceOptions: {
         _: {
-	      ignoreCase: true,
-	      matchers: [
+        ignoreCase: true,
+        matchers: [
             "matcher_head",
-	      ],
-	      sorters: [
+        ],
+        sorters: [
             "sorter_rank",
           ],
           converters: [
             "converter_remove_overlap"
           ],
-	    },
-	    around: {
+      },
+      around: {
           mark: "around",
         },
-	    lsp: {
+      lsp: {
           mark: "lsp",
           forceCompletionPattern: "\.\w*|:\w*|->\w*",
         },
