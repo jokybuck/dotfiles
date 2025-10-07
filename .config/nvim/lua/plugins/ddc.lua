@@ -1,6 +1,6 @@
 local M = {}
 
-local function commandline_post()
+function CommandlinePost()
   vim.keymap.del('c', '<Tab>')
   vim.keymap.del('c', '<S-Tab>')
   vim.keymap.del('c', '<C-n>')
@@ -9,7 +9,7 @@ local function commandline_post()
   vim.keymap.del('c', '<C-e>')
 end
 
-local function commandline_pre()
+function CommandlinePre()
   vim.keymap.set('c', '<Tab>', '<Cmd>call pum#map#insert_relative(+1)<CR>')
   vim.keymap.set('c', '<S-Tab>', '<Cmd>call pum#map#insert_relative(-1)<CR>')
   vim.keymap.set('c', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>')
@@ -21,7 +21,7 @@ local function commandline_pre()
     pattern = 'DDCCmdlineLeave',
     once = true,
     callback = function()
-      commandline_post()
+      CommandlinePost()
     end,
   })
 
@@ -30,8 +30,7 @@ local function commandline_pre()
 end
 
 M.hook_add = function()
-  --
-  --vim.keymap.set('n', ':', '<Cmd>call commandline_pre()<CR>')
+  vim.keymap.set('n', ':', '<Cmd>lua CommandlinePre()<Cr>:')
 end
 
 M.hook_source = function()
@@ -40,7 +39,7 @@ M.hook_source = function()
 
   -- TAB キー
   vim.keymap.set('i', '<Tab>', function()
-    if vim.fn['pum#visible']() == 1 then
+    if vim.fn['pum#visible']() then
       return '<Cmd>call pum#map#insert_relative(+1, "empty")<CR>'
     elseif vim.fn.col('.') <= 1 then
       return '<Tab>'
