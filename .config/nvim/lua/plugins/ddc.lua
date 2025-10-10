@@ -30,7 +30,7 @@ function CommandlinePre()
 end
 
 M.hook_add = function()
-  vim.keymap.set('n', ':', '<Cmd>lua CommandlinePre()<Cr>:')
+  -- vim.keymap.set('n', ':', '<Cmd>lua CommandlinePre()<Cr>:')
 end
 
 M.hook_source = function()
