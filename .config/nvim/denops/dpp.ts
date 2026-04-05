@@ -120,7 +120,7 @@ export class Config extends BaseConfig {
         denops: args.denops,
         context,
         options,
-	protocols: await args.dpp.getProtocols(args.denops, options),
+        protocols: await args.dpp.getProtocols(args.denops, options),
         extOptions: localOptions,
         extParams: localParams,
         actionParams: {
@@ -159,7 +159,7 @@ export class Config extends BaseConfig {
         denops: args.denops,
         context,
         options,
-	protocols: await args.dpp.getProtocols(args.denops, options),
+        protocols: await args.dpp.getProtocols(args.denops, options),
         extOptions: lazyOptions,
         extParams: lazyParams,
         actionParams: {

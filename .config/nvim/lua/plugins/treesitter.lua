@@ -12,7 +12,7 @@ M.hook_source = function()
       "vim",
       "vimdoc",
     },
-    sync_intall = true,
+    sync_install = true,
     auto_install = false,
     ignore_install = { "all" },
     highlight = {
