@@ -1,6 +1,6 @@
 local M = {}
 
-function CommandlinePost()
+local function CommandlinePost()
   vim.keymap.del('c', '<Tab>')
   vim.keymap.del('c', '<S-Tab>')
   vim.keymap.del('c', '<C-n>')
@@ -9,7 +9,7 @@ function CommandlinePost()
   vim.keymap.del('c', '<C-e>')
 end
 
-function CommandlinePre()
+local function CommandlinePre()
   vim.keymap.set('c', '<Tab>', '<Cmd>call pum#map#insert_relative(+1)<CR>')
   vim.keymap.set('c', '<S-Tab>', '<Cmd>call pum#map#insert_relative(-1)<CR>')
   vim.keymap.set('c', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>')
@@ -50,20 +50,15 @@ M.hook_source = function()
     end
   end, { expr = true, noremap = true, silent = true })
   -- Shift + TAB キー
-  vim.api.nvim_set_keymap(
-    'i',
-    '<S-Tab>',
-    '<Cmd>call pum#map#insert_relative(-1)<CR>',
-    { noremap = true, silent = true }
-  )
+  vim.keymap.set('i', '<S-Tab>', '<Cmd>call pum#map#insert_relative(-1)<CR>', { noremap = true, silent = true })
   -- Ctrl + N キー
-  vim.api.nvim_set_keymap('i', '<C-n>', '<Cmd>call pum#map#select_relative(+1)<CR>', { noremap = true, silent = true })
+  vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#select_relative(+1)<CR>', { noremap = true, silent = true })
   -- Ctrl + P キー
-  vim.api.nvim_set_keymap('i', '<C-p>', '<Cmd>call pum#map#select_relative(-1)<CR>', { noremap = true, silent = true })
+  vim.keymap.set('i', '<C-p>', '<Cmd>call pum#map#select_relative(-1)<CR>', { noremap = true, silent = true })
   -- Ctrl + Y キー
-  vim.api.nvim_set_keymap('i', '<C-y>', '<Cmd>call pum#map#confirm()<CR>', { noremap = true, silent = true })
+  vim.keymap.set('i', '<C-y>', '<Cmd>call pum#map#confirm()<CR>', { noremap = true, silent = true })
   -- Ctrl + E キー
-  vim.api.nvim_set_keymap('i', '<C-e>', '<Cmd>call pum#map#cancel()<CR>', { noremap = true, silent = true })
+  vim.keymap.set('i', '<C-e>', '<Cmd>call pum#map#cancel()<CR>', { noremap = true, silent = true })
 
   -- vim.fn['ddc#enable_terminal_completion']()
   vim.fn['ddc#enable_cmdline_completion']()

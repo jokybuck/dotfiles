@@ -10,10 +10,10 @@ vim.lsp.enable(lsp_names)
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Diagnostic 一覧を Quickfix に表示
+-- Diagnostic をフローティングウィンドウで表示
 keymap("n", "<Leader>df", function()
   vim.diagnostic.open_float()
-end)
+end, opts)
 
 -- Diagnostic 一覧を Quickfix に表示
 keymap("n", "<Leader>dq", function()

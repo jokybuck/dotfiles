@@ -2,10 +2,10 @@ local M = {}
 
 local function set_terminal_keymaps()
   local opts = { buffer = true, noremap = true, silent = true }
-  vim.keymap.set("n", "<c-n>", "<cmd>call ddt#ui#do_action('nextprompt')<Cr>", opts)
-  vim.keymap.set("n", "<c-p>", "<cmd>call ddt#ui#do_action('previousprompt')<Cr>", opts)
-  vim.keymap.set("n", "<c-y>", "<cmd>call ddt#ui#do_action('pasteprompt')<Cr>", opts)
-  vim.keymap.set("n", "<cr>", "<cmd>call ddt#ui#do_action('executeline')<Cr>", opts)
+  vim.keymap.set("n", "<C-n>", "<Cmd>call ddt#ui#do_action('nextPrompt')<Cr>", opts)
+  vim.keymap.set("n", "<C-p>", "<Cmd>call ddt#ui#do_action('previousPrompt')<Cr>", opts)
+  vim.keymap.set("n", "<C-y>", "<Cmd>call ddt#ui#do_action('pastePrompt')<Cr>", opts)
+  vim.keymap.set("n", "<Cr>", "<Cmd>call ddt#ui#do_action('executeLine')<Cr>", opts)
 end
 
 local function set_shell_keymaps()
@@ -43,12 +43,12 @@ M.hook_source = function()
   local path = vim.fn.expand('$BASE_DIR/denops/ddt.ts')
   vim.fn['ddt#custom#load_config'](path)
 
-  vim.api.nvim_create_autocmd("filetype", {
+  vim.api.nvim_create_autocmd("FileType", {
     pattern = 'ddt-terminal',
     callback = set_terminal_keymaps,
   })
 
-  vim.api.nvim_create_autocmd("filetype", {
+  vim.api.nvim_create_autocmd("FileType", {
     pattern = 'ddt-shell',
     callback = set_shell_keymaps,
   })

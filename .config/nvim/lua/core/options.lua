@@ -5,7 +5,6 @@ vim.scriptencoding = 'utf-8'
 
 -- visual
 vim.opt.ambiwidth = 'double'
-vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.showmatch = true
 

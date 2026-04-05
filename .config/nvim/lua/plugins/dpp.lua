@@ -39,18 +39,18 @@ if dpp.load_state(dppBase) then
 
   vim.api.nvim_create_autocmd("User", {
     pattern = "DenopsReady",
-    callback = function ()
+    callback = function()
       vim.notify("vim load_state is failed")
       dpp.make_state(dppBase, dppConfig)
-    end
+    end,
   })
 end
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "Dpp:makeStatePost",
-  callback = function ()
+  callback = function()
     vim.notify("dpp make_state() is done")
-  end
+  end,
 })
 
 -- keymaps {{{
@@ -58,11 +58,11 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_user_command('DppInstall', "call dpp#async_ext_action('installer', 'install')", {})
 -- update
 vim.api.nvim_create_user_command(
-    'DppUpdate', 
-    function(opts)
-        local args = opts.fargs
-        vim.fn['dpp#async_ext_action']('installer', 'update', { names = args })
-    end, 
-    { nargs = '*' }
+  'DppUpdate',
+  function(opts)
+    local args = opts.fargs
+    vim.fn['dpp#async_ext_action']('installer', 'update', { names = args })
+  end,
+  { nargs = '*' }
 )
 -- }}}

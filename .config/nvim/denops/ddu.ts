@@ -214,7 +214,7 @@ export class Config extends BaseConfig {
       ],
       sourceOptions: {
         _: {
-	      columns: [ "filename" ],
+          columns: ["filename"],
         },
       },
     });
