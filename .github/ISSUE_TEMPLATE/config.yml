@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: スマホからのタスク依頼方法 / How to request tasks from smartphone
+    url: https://github.com/jokybuck/dotfiles/issues/new?template=task-request.md
+    about: GitHubモバイルアプリからでもタスクを依頼できます / You can also request tasks from the GitHub mobile app
